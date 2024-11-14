@@ -30,3 +30,9 @@ variable "sshkey" {
 variable "instance_type" {
   default = "t2.micro"
 }
+
+variable "keyPath" {
+  type = string
+  description = "local path to the ssh key"
+  default = ""
+}
