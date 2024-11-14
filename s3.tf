@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "mys3bucket" {
-  bucket = "${data.aws_caller_identity.caller_id.account_id}-bastionHost-bucket"
+  bucket = "${data.aws_caller_identity.caller_id.account_id}-bastionhost-bucket"
   
   tags = merge(local.common_tags,tomap({"Name" = "${local.prefix}-s3-bucket"}))
 }

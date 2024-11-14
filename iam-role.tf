@@ -22,10 +22,10 @@ resource "aws_iam_policy" "bucket_access_policy" {
   description = "Allowing ec2 instance to access S3 bucket"
   policy = <<EOF
   {
-    "Version": "2012-10-17"
+    "Version": "2012-10-17",
     "Statement": [
       {
-        "Effect": "Allow"
+        "Effect": "Allow",
         "Action": ["s3:GetObject", "s3:ListBucket"],
         "Resource": [
           "arn:aws:s3::${aws_s3_bucket.mys3bucket.arn}",
