@@ -13,12 +13,12 @@ resource "aws_iam_role" "bastion_role" {
 }
 
 resource "aws_iam_instance_profile" "bastionHost_profile" {
-  name = "bastionHost-instanceProfile"
+  name = "bastionhost-instanceprofile"
   role = aws_iam_role.bastion_role.name
 }
 
 resource "aws_iam_policy" "bucket_access_policy" {
-  name = "EC2-to-S3-AcessPolicy"
+  name = "EC2toS3AcessPolicy"
   description = "Allowing ec2 instance to access S3 bucket"
   policy = <<EOF
   {
@@ -28,8 +28,8 @@ resource "aws_iam_policy" "bucket_access_policy" {
         "Effect": "Allow",
         "Action": ["s3:GetObject", "s3:ListBucket"],
         "Resource": [
-          "arn:aws:s3::${aws_s3_bucket.mys3bucket.arn}",
-          "arn:aws:s3::${aws_s3_bucket.mys3bucket.arn}/*"
+          "arn:aws:s3:::${aws_s3_bucket.mys3bucket.arn}",
+          "arn:aws:s3:::${aws_s3_bucket.mys3bucket.arn}/*"
         ]
       }
     ]
