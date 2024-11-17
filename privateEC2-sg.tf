@@ -1,14 +1,14 @@
 
-resource "aws_security_group" "bastion_ssh" {
+resource "aws_security_group" "private_ssh" {
   description = "SSH into EC2 and HTTP/HTTPS out of  EC2"
-  name = "${local.prefix}-bastion_ssh"
+  name = "${local.prefix}-privateEC2_ssh"
   vpc_id = aws_vpc.main.id
 
   ingress {
     protocol = "tcp"
     from_port = 22
     to_port = 22
-    cidr_blocks = ["0.0.0.0/0"]
+    security_groups = ["${aws_security_group.bastion_ssh.id}", ]
   }
 
   egress {
@@ -25,12 +25,6 @@ resource "aws_security_group" "bastion_ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  egress{
-    protocol = "tcp"
-    from_port = 22
-    to_port = 22
-    cidr_blocks = ["0.0.0.0/0"]
-  }  
   
   tags = local.common_tags
 }
